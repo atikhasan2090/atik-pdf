@@ -37,6 +37,34 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Browser Engine (Spatie Browsershot) Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configuration for Headless Chrome PDF generation, perfect for Bootstrap
+    | and complex CSS layouts.
+    |
+    */
+    'browser_engine' => [
+        'node_binary' => env('ATIK_PDF_NODE_BINARY'),
+        'npm_binary' => env('ATIK_PDF_NPM_BINARY'),
+        'node_module_path' => env('ATIK_PDF_NODE_MODULE_PATH'),
+        'chrome_path' => env('ATIK_PDF_CHROME_PATH'),
+        'no_sandbox' => true,
+        'format' => 'A4',
+        'margins' => [
+            'top' => 10,
+            'right' => 10,
+            'bottom' => 10,
+            'left' => 10,
+        ],
+        'args' => [
+            '--disable-gpu',
+            '--disable-dev-shm-usage',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Python Microservice Configuration
     |--------------------------------------------------------------------------
     |

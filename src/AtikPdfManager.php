@@ -45,21 +45,34 @@ class AtikPdfManager
     }
 
     /**
-     * Use PHP engine (mPDF) specifically for views
+     * Use Browser engine (Spatie Browsershot) for rendering
+     */
+    public function browser(): self
+    {
+        $this->engine = new \Atik\Pdf\Engines\BrowserEngine();
+        return $this;
+    }
+
+    /**
+     * Use selected engine (defaults to mPDF) specifically for views
      */
     public function view(string $view, array $data = []): self
     {
-        $this->engine = new PhpEngine();
+        if (!$this->engine) {
+            $this->engine = new PhpEngine();
+        }
         $this->engine->fromView($view, $data);
         return $this;
     }
 
     /**
-     * Use PHP engine for a table
+     * Use selected engine (defaults to mPDF) for a table
      */
     public function table(array|\Iterator $rows, array $columns = [], string $title = ''): self
     {
-        $this->engine = new PhpEngine();
+        if (!$this->engine) {
+            $this->engine = new PhpEngine();
+        }
         $this->engine->fromTable($rows, $columns, $title);
         return $this;
     }
