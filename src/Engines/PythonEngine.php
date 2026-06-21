@@ -72,4 +72,14 @@ class PythonEngine implements PdfEngineInterface
 
         throw new Exception("Python PDF generation failed: " . $response->body());
     }
+
+    public function getContentType(): string
+    {
+        return 'application/pdf';
+    }
+
+    public function getExtension(): string
+    {
+        return 'pdf';
+    }
 }

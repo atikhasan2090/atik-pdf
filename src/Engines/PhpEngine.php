@@ -103,4 +103,14 @@ class PhpEngine implements PdfEngineInterface
     {
         return $this->mpdf->Output('', \Mpdf\Output\Destination::STRING_RETURN);
     }
+
+    public function getContentType(): string
+    {
+        return 'application/pdf';
+    }
+
+    public function getExtension(): string
+    {
+        return 'pdf';
+    }
 }

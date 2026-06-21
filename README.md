@@ -1,19 +1,23 @@
 # Atik PDF
 
-Enterprise-grade hybrid Laravel PDF package with ultra-fast large-table PDF generation and full Bangla font support.
+Enterprise-grade hybrid Laravel document generation package supporting **PDF**, **Excel**, and **CSV** output with ultra-fast large-table generation and full Bangla font support.
 
 ## Overview
 
-`atik-pdf` uses a hybrid engine architecture to solve the classic memory-exhaustion problem when generating huge PDFs in PHP:
+`atik-pdf` uses a hybrid engine architecture to solve the classic memory-exhaustion problem when generating huge documents in PHP:
 
-1. **PHP Engine (`mPDF`)**: Automatically used for styled HTML documents, invoices, and reports under a configured threshold (default 5,000 rows).
-2. **Python Engine (`FastAPI + ReportLab`)**: Automatically used for huge tables, streaming PDFs, and memory-optimized generation for datasets up to 100k+ rows.
+| Format | Engine | Best For |
+|--------|--------|----------|
+| **PDF** | `mPDF`, `Browsershot`, `FastAPI + ReportLab` | Styled HTML, invoices, reports, massive tables |
+| **Excel** | `PhpSpreadsheet` | .xlsx exports with styled headers and auto-sized columns |
+| **CSV** | Native PHP | Lightweight tabular data, data migrations |
 
 ## Features
 
-- **Hybrid Architecture**: Best of both worlds (PHP for styles, Python for massive data).
-- **Automatic Engine Switching**: `AtikPdf::auto()` handles the switching for you.
-- **Queue & Async Support**: Generate massive PDFs in the background.
+- **Hybrid PDF Architecture**: Best of both worlds (PHP for styles, Python for massive data).
+- **Automatic Engine Switching**: `AtikPdf::auto()` handles the PDF engine switching for you.
+- **Excel & CSV Support**: Export tabular data to `.xlsx` or `.csv` with the same fluent API.
+- **Queue & Async Support**: Generate massive documents in the background.
 - **Bangla Font Support**: Built-in support for Noto Sans Bengali and SolaimanLipi.
 
 ## Installation
@@ -31,7 +35,7 @@ php artisan vendor:publish --tag=atik-pdf-config
 php artisan vendor:publish --tag=atik-pdf-python-service
 ```
 
-### 2. Run the Python Microservice
+### 2. Run the Python Microservice (PDF only)
 
 You can run the Python microservice locally or via Docker.
 
@@ -55,7 +59,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ## Usage Examples
 
-### Standard View (mPDF)
+### PDF — Standard View (mPDF)
 
 Perfect for invoices or certificates.
 
@@ -66,7 +70,7 @@ return AtikPdf::view('invoices.standard', ['invoice' => $data])
     ->download('invoice_001.pdf');
 ```
 
-### Automatic Engine (Table)
+### PDF — Automatic Engine (Table)
 
 Automatically switches to Python if rows > 5000.
 
@@ -81,7 +85,7 @@ return AtikPdf::auto($rows, $columns, 'Monthly Report')
     ->stream();
 ```
 
-### Async / Background Generation
+### PDF — Async / Background Generation
 
 For 50k+ rows, queue it!
 
@@ -93,10 +97,41 @@ AtikPdf::async($massiveRowArray, $columns, 'Massive Dataset')
 return response()->json(['message' => 'PDF is generating in the background!']);
 ```
 
+### Excel Export
+
+```php
+$columns = ['ID', 'Product', 'Price', 'Stock'];
+$rows = [
+    [1, 'Widget A', 19.99, 100],
+    [2, 'Widget B', 29.99, 50],
+];
+
+return AtikPdf::excel()
+    ->table($rows, $columns, 'Inventory Report')
+    ->download('inventory');
+```
+
+### CSV Export
+
+```php
+return AtikPdf::csv()
+    ->table($rows, $columns)
+    ->stream('export');
+```
+
+### Async Excel/CSV
+
+```php
+AtikPdf::excel()
+    ->async($rows, $columns, 'Large Dataset')
+    ->queue('exports/dataset.xlsx');
+```
+
 ## Configuration
 
 See `config/atik-pdf.php` to configure:
 - `auto_threshold`: Number of rows to trigger the Python engine.
 - `python_engine.api_url`: URL of your deployed FastAPI service.
+- `excel_engine.author`: Author metadata for .xlsx files.
+- `csv_engine.delimiter`, `csv_engine.include_bom`: CSV formatting options.
 - Queues, disks, and mPDF margins.
-# atik-pdf

@@ -78,6 +78,32 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Excel Engine (PhpSpreadsheet) Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configuration for Excel (.xlsx) file generation via PhpSpreadsheet.
+    |
+    */
+    'excel_engine' => [
+        'author' => env('ATIK_PDF_EXCEL_AUTHOR', 'Atik PDF'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | CSV Engine Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configuration for CSV file generation.
+    |
+    */
+    'csv_engine' => [
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'include_bom' => false, // Set to true for Excel-compatible UTF-8 CSV
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Queue Configuration
     |--------------------------------------------------------------------------
     |

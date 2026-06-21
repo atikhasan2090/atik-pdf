@@ -133,4 +133,14 @@ class BrowserEngine implements PdfEngineInterface
 
         return $browsershot->pdf();
     }
+
+    public function getContentType(): string
+    {
+        return 'application/pdf';
+    }
+
+    public function getExtension(): string
+    {
+        return 'pdf';
+    }
 }
