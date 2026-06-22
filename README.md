@@ -14,6 +14,7 @@ Enterprise-grade hybrid Laravel document generation package supporting **PDF**, 
 
 ## Features
 
+- **Laravel 8+ Compatible**: Works with Laravel 8, 10, 11, and 12.
 - **Hybrid PDF Architecture**: Best of both worlds (PHP for styles, Python for massive data).
 - **Automatic Engine Switching**: `AtikPdf::auto()` handles the PDF engine switching for you.
 - **Excel & CSV Support**: Export tabular data to `.xlsx` or `.csv` with the same fluent API.
