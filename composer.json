@@ -1,6 +1,6 @@
 {
-    "name": "atik/atik-pdf",
-    "description": "Enterprise-grade hybrid Laravel PDF package with ultra-fast large-table PDF generation and full Bangla font support.",
+    "name": "atik/laravel-pdf-excel",
+    "description": "Enterprise-grade hybrid Laravel package for PDF, Excel & CSV generation with ultra-fast large-table support and full Bangla font rendering.",
     "type": "library",
     "license": "MIT",
     "authors": [

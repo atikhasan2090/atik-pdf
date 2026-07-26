@@ -12,14 +12,14 @@ class AtikPdfServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/atik-pdf.php', 'atik-pdf'
+            __DIR__.'/../config/laravel-pdf-excel.php', 'laravel-pdf-excel'
         );
 
         $this->app->singleton(AtikPdfManager::class, function ($app) {
             return new AtikPdfManager($app);
         });
 
-        $this->app->bind('atik-pdf', function ($app) {
+        $this->app->bind('laravel-pdf-excel', function ($app) {
             return $app->make(AtikPdfManager::class);
         });
     }
@@ -31,13 +31,13 @@ class AtikPdfServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/atik-pdf.php' => config_path('atik-pdf.php'),
-            ], 'atik-pdf-config');
+                __DIR__.'/../config/laravel-pdf-excel.php' => config_path('laravel-pdf-excel.php'),
+            ], 'laravel-pdf-excel-config');
             
             // Allow publishing python service if they want it inside the laravel app
             $this->publishes([
                 __DIR__.'/../python-service' => base_path('python-service'),
-            ], 'atik-pdf-python-service');
+            ], 'laravel-pdf-excel-python-service');
         }
     }
 }

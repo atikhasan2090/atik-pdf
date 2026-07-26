@@ -15,7 +15,7 @@ class PhpEngine implements PdfEngineInterface
 
     public function __construct(array $config = [])
     {
-        $defaultConfig = config('atik-pdf.php_engine', []);
+        $defaultConfig = config('laravel-pdf-excel.php_engine', []);
         $mergedConfig = array_merge($defaultConfig, $config);
 
         // Map laravel config to mPDF expected keys if needed
@@ -95,7 +95,7 @@ class PhpEngine implements PdfEngineInterface
 
     public function save(string $path, string $disk = null): bool
     {
-        $disk = $disk ?? config('atik-pdf.queue.disk', 'local');
+        $disk = $disk ?? config('laravel-pdf-excel.queue.disk', 'local');
         return Storage::disk($disk)->put($path, $this->output());
     }
 

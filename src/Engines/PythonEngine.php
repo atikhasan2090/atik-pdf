@@ -55,15 +55,15 @@ class PythonEngine implements PdfEngineInterface
 
     public function save(string $path, string $disk = null): bool
     {
-        $disk = $disk ?? config('atik-pdf.queue.disk', 'local');
+        $disk = $disk ?? config('laravel-pdf-excel.queue.disk', 'local');
         return Storage::disk($disk)->put($path, $this->output());
     }
 
     public function output(): string
     {
-        $url = rtrim(config('atik-pdf.python_engine.api_url'), '/') . '/generate-pdf';
+        $url = rtrim(config('laravel-pdf-excel.python_engine.api_url'), '/') . '/generate-pdf';
         
-        $response = Http::timeout(config('atik-pdf.python_engine.timeout', 300))
+        $response = Http::timeout(config('laravel-pdf-excel.python_engine.timeout', 300))
             ->post($url, $this->data);
 
         if ($response->successful()) {

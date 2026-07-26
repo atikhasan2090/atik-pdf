@@ -16,7 +16,7 @@ class BrowserEngine implements PdfEngineInterface
     public function __construct(array $config = [])
     {
         $this->browsershotOptions = array_merge(
-            config('atik-pdf.browser_engine', []),
+            config('laravel-pdf-excel.browser_engine', []),
             $config
         );
     }
@@ -85,7 +85,7 @@ class BrowserEngine implements PdfEngineInterface
 
     public function save(string $path, string $disk = null): bool
     {
-        $disk = $disk ?? config('atik-pdf.queue.disk', 'local');
+        $disk = $disk ?? config('laravel-pdf-excel.queue.disk', 'local');
         return Storage::disk($disk)->put($path, $this->output());
     }
 

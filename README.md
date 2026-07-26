@@ -1,10 +1,10 @@
-# Atik PDF
+# Laravel PDF Excel
 
 Enterprise-grade hybrid Laravel document generation package supporting **PDF**, **Excel**, and **CSV** output with ultra-fast large-table generation and full Bangla font support.
 
 ## Overview
 
-`atik-pdf` uses a hybrid engine architecture to solve the classic memory-exhaustion problem when generating huge documents in PHP:
+`laravel-pdf-excel` uses a hybrid engine architecture to solve the classic memory-exhaustion problem when generating huge documents in PHP:
 
 | Format | Engine | Best For |
 |--------|--------|----------|
@@ -26,14 +26,14 @@ Enterprise-grade hybrid Laravel document generation package supporting **PDF**, 
 ### 1. Install the Laravel Package
 
 ```bash
-composer require atik/atik-pdf
+composer require atik/laravel-pdf-excel
 ```
 
 Publish the configuration and (optionally) the Python service:
 
 ```bash
-php artisan vendor:publish --tag=atik-pdf-config
-php artisan vendor:publish --tag=atik-pdf-python-service
+php artisan vendor:publish --tag=laravel-pdf-excel-config
+php artisan vendor:publish --tag=laravel-pdf-excel-python-service
 ```
 
 ### 2. Run the Python Microservice (PDF only)
@@ -43,8 +43,8 @@ You can run the Python microservice locally or via Docker.
 **Via Docker:**
 ```bash
 cd python-service
-docker build -t atik-pdf-python .
-docker run -d -p 8000:8000 atik-pdf-python
+docker build -t laravel-pdf-excel-python .
+docker run -d -p 8000:8000 laravel-pdf-excel-python
 ```
 
 **Via Uvicorn (Local):**
@@ -130,7 +130,7 @@ AtikPdf::excel()
 
 ## Configuration
 
-See `config/atik-pdf.php` to configure:
+See `config/laravel-pdf-excel.php` to configure:
 - `auto_threshold`: Number of rows to trigger the Python engine.
 - `python_engine.api_url`: URL of your deployed FastAPI service.
 - `excel_engine.author`: Author metadata for .xlsx files.

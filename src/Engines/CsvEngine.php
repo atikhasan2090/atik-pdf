@@ -16,7 +16,7 @@ class CsvEngine implements DocumentEngineInterface
 
     public function __construct(array $config = [])
     {
-        $config = array_merge(config('atik-pdf.csv_engine', []), $config);
+        $config = array_merge(config('laravel-pdf-excel.csv_engine', []), $config);
         $this->delimiter = $config['delimiter'] ?? ',';
         $this->enclosure = $config['enclosure'] ?? '"';
         $this->includeBom = $config['include_bom'] ?? false;
@@ -65,7 +65,7 @@ class CsvEngine implements DocumentEngineInterface
 
     public function save(string $path, string $disk = null): bool
     {
-        $disk = $disk ?? config('atik-pdf.queue.disk', 'local');
+        $disk = $disk ?? config('laravel-pdf-excel.queue.disk', 'local');
         return Storage::disk($disk)->put($path, $this->output());
     }
 

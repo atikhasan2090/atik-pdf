@@ -30,7 +30,7 @@ class AtikPdfManager
 
     public function auto(array $rows, array $columns = [], string $title = ''): self
     {
-        $threshold = config('atik-pdf.auto_threshold', 5000);
+        $threshold = config('laravel-pdf-excel.auto_threshold', 5000);
         $count = is_array($rows) ? count($rows) : iterator_count($rows);
 
         if ($this->format === 'pdf' && $count >= $threshold) {
@@ -122,15 +122,15 @@ class AtikPdfManager
 
         $ext = $this->resolveExtension();
         $filename = $filename ?? 'document_' . time() . '_' . Str::random(5) . '.' . $ext;
-        $path = config('atik-pdf.queue.path', 'pdfs/') . $filename;
-        $disk = config('atik-pdf.queue.disk', 'local');
+        $path = config('laravel-pdf-excel.queue.path', 'pdfs/') . $filename;
+        $disk = config('laravel-pdf-excel.queue.disk', 'local');
 
         GenerateLargePdfJob::dispatch(
             $this->currentData,
             $path,
             $disk,
             $this->webhookUrl
-        )->onQueue(config('atik-pdf.queue.queue', 'default'));
+        )->onQueue(config('laravel-pdf-excel.queue.queue', 'default'));
 
         return [
             'status' => 'queued',

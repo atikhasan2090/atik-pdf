@@ -30,6 +30,6 @@ class AtikPdf extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'atik-pdf';
+        return 'laravel-pdf-excel';
     }
 }
