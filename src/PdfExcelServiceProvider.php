@@ -4,7 +4,7 @@ namespace Atik\Pdf;
 
 use Illuminate\Support\ServiceProvider;
 
-class AtikPdfServiceProvider extends ServiceProvider
+class PdfExcelServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -15,12 +15,12 @@ class AtikPdfServiceProvider extends ServiceProvider
             __DIR__.'/../config/laravel-pdf-excel.php', 'laravel-pdf-excel'
         );
 
-        $this->app->singleton(AtikPdfManager::class, function ($app) {
-            return new AtikPdfManager($app);
+        $this->app->singleton(PdfExcelManager::class, function ($app) {
+            return new PdfExcelManager($app);
         });
 
         $this->app->bind('laravel-pdf-excel', function ($app) {
-            return $app->make(AtikPdfManager::class);
+            return $app->make(PdfExcelManager::class);
         });
     }
 

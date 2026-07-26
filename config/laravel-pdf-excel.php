@@ -6,7 +6,7 @@ return [
     | Default Engine Threshold
     |--------------------------------------------------------------------------
     |
-    | When using AtikPdf::auto(), this threshold determines the number of rows
+    | When using PdfExcel::auto(), this threshold determines the number of rows
     | at which the engine switches from the PHP engine (mPDF) to the
     | Python microservice engine (FastAPI + ReportLab).
     |

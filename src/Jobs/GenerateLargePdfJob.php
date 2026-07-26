@@ -1,16 +1,16 @@
 <?php
 
-namespace Atik\Pdf\Jobs;
+namespace Atik\\PdfExcel\\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Atik\Pdf\Engines\PythonEngine;
-use Atik\Pdf\Engines\ExcelEngine;
-use Atik\Pdf\Engines\CsvEngine;
-use Atik\Pdf\Contracts\DocumentEngineInterface;
+use Atik\\PdfExcel\\Engines\PythonEngine;
+use Atik\\PdfExcel\\Engines\ExcelEngine;
+use Atik\\PdfExcel\\Engines\CsvEngine;
+use Atik\\PdfExcel\\Contracts\DocumentEngineInterface;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 

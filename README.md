@@ -16,7 +16,7 @@ Enterprise-grade hybrid Laravel document generation package supporting **PDF**, 
 
 - **Laravel 8+ Compatible**: Works with Laravel 8, 10, 11, and 12.
 - **Hybrid PDF Architecture**: Best of both worlds (PHP for styles, Python for massive data).
-- **Automatic Engine Switching**: `AtikPdf::auto()` handles the PDF engine switching for you.
+- **Automatic Engine Switching**: `PdfExcel::auto()` handles the PDF engine switching for you.
 - **Excel & CSV Support**: Export tabular data to `.xlsx` or `.csv` with the same fluent API.
 - **Queue & Async Support**: Generate massive documents in the background.
 - **Bangla Font Support**: Built-in support for Noto Sans Bengali and SolaimanLipi.
@@ -65,9 +65,9 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 Perfect for invoices or certificates.
 
 ```php
-use Atik\Pdf\Facades\AtikPdf;
+use Atik\PdfExcel\Facades\PdfExcel;
 
-return AtikPdf::view('invoices.standard', ['invoice' => $data])
+return PdfExcel::view('invoices.standard', ['invoice' => $data])
     ->download('invoice_001.pdf');
 ```
 
@@ -82,7 +82,7 @@ $rows = [
     // ... 10,000 more rows
 ];
 
-return AtikPdf::auto($rows, $columns, 'Monthly Report')
+return PdfExcel::auto($rows, $columns, 'Monthly Report')
     ->stream();
 ```
 
@@ -91,7 +91,7 @@ return AtikPdf::auto($rows, $columns, 'Monthly Report')
 For 50k+ rows, queue it!
 
 ```php
-AtikPdf::async($massiveRowArray, $columns, 'Massive Dataset')
+PdfExcel::async($massiveRowArray, $columns, 'Massive Dataset')
     ->webhook('https://myapp.com/api/webhooks/pdf-ready')
     ->queue('reports/massive_report_august.pdf');
 
@@ -107,7 +107,7 @@ $rows = [
     [2, 'Widget B', 29.99, 50],
 ];
 
-return AtikPdf::excel()
+return PdfExcel::excel()
     ->table($rows, $columns, 'Inventory Report')
     ->download('inventory');
 ```
@@ -115,7 +115,7 @@ return AtikPdf::excel()
 ### CSV Export
 
 ```php
-return AtikPdf::csv()
+return PdfExcel::csv()
     ->table($rows, $columns)
     ->stream('export');
 ```
@@ -123,7 +123,7 @@ return AtikPdf::csv()
 ### Async Excel/CSV
 
 ```php
-AtikPdf::excel()
+PdfExcel::excel()
     ->async($rows, $columns, 'Large Dataset')
     ->queue('exports/dataset.xlsx');
 ```

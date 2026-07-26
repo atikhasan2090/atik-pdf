@@ -19,21 +19,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Atik\\Pdf\\": "src/"
+            "Atik\\PdfExcel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Atik\\Pdf\\Tests\\": "tests/"
+            "Atik\\PdfExcel\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Atik\\Pdf\\AtikPdfServiceProvider"
+                "Atik\\PdfExcel\\PdfExcelServiceProvider"
             ],
             "aliases": {
-                "AtikPdf": "Atik\\Pdf\\Facades\\AtikPdf"
+                "PdfExcel": "Atik\\PdfExcel\\Facades\\PdfExcel"
             }
         }
     },

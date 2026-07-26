@@ -1,18 +1,18 @@
 <?php
 
-namespace Atik\Pdf;
+namespace Atik\PdfExcel;
 
 use Illuminate\Contracts\Foundation\Application;
-use Atik\Pdf\Engines\PhpEngine;
-use Atik\Pdf\Engines\PythonEngine;
-use Atik\Pdf\Engines\ExcelEngine;
-use Atik\Pdf\Engines\CsvEngine;
-use Atik\Pdf\Jobs\GenerateLargePdfJob;
-use Atik\Pdf\Contracts\DocumentEngineInterface;
-use Atik\Pdf\Contracts\PdfEngineInterface;
+use Atik\PdfExcel\Engines\PhpEngine;
+use Atik\PdfExcel\Engines\PythonEngine;
+use Atik\PdfExcel\Engines\ExcelEngine;
+use Atik\PdfExcel\Engines\CsvEngine;
+use Atik\PdfExcel\Jobs\GenerateLargePdfJob;
+use Atik\PdfExcel\Contracts\DocumentEngineInterface;
+use Atik\PdfExcel\Contracts\PdfEngineInterface;
 use Illuminate\Support\Str;
 
-class AtikPdfManager
+class PdfExcelManager
 {
     protected Application $app;
 
@@ -46,7 +46,7 @@ class AtikPdfManager
 
     public function browser(): self
     {
-        $this->engine = new \Atik\Pdf\Engines\BrowserEngine();
+        $this->engine = new \Atik\PdfExcel\Engines\BrowserEngine();
         return $this;
     }
 

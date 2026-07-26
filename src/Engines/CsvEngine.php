@@ -1,8 +1,8 @@
 <?php
 
-namespace Atik\Pdf\Engines;
+namespace Atik\\PdfExcel\\Engines;
 
-use Atik\Pdf\Contracts\DocumentEngineInterface;
+use Atik\\PdfExcel\\Contracts\DocumentEngineInterface;
 use Illuminate\Support\Facades\Storage;
 
 class CsvEngine implements DocumentEngineInterface

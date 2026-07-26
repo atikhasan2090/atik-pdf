@@ -1,8 +1,8 @@
 <?php
 
-namespace Atik\Pdf\Engines;
+namespace Atik\\PdfExcel\\Engines;
 
-use Atik\Pdf\Contracts\PdfEngineInterface;
+use Atik\\PdfExcel\\Contracts\PdfEngineInterface;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Exception;

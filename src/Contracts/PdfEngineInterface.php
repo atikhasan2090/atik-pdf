@@ -1,6 +1,6 @@
 <?php
 
-namespace Atik\Pdf\Contracts;
+namespace Atik\\PdfExcel\\Contracts;
 
 interface PdfEngineInterface extends DocumentEngineInterface
 {
